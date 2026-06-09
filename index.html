@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mania de Prata - Pratas 925 & Semijoias</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <!-- Header principal -->
+  <header class="site-header">
+    <div class="header-content">
+      <p class="pre-title">Mania de Prata</p>
+      <h1>Pratas 925 &amp; Semijoias</h1>
+      <a class="btn-primary" href="https://wa.me/5522997633624" target="_blank" rel="noreferrer">Chamar no WhatsApp</a>
+    </div>
+  </header>
+
+  <!-- Separador em onda -->
+  <div class="wave-separator" aria-hidden="true">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0 C400,120 800,0 1200,100 L1200,120 L0,120 Z" fill="#E6F7F8"></path>
+    </svg>
+  </div>
+
+  <!-- Seção informativa -->
+  <section class="info-section">
+    <div class="info-card">
+      <h2>Formas de pagamento</h2>
+      <p>Pix • Cartão • Dinheiro</p>
+      <p class="highlight">Aceitamos encomendas</p>
+    </div>
+  </section>
+
+  <!-- Galeria de produtos -->
+  <section class="products-section">
+    <div class="section-header">
+      <h2>Coleção em destaque</h2>
+      <p>Joias delicadas com acabamento premium</p>
+    </div>
+
+    <div class="products-grid">
+      <article class="product-card">
+        <div class="product-image">
+          <img src="imagens/colar-borboleta-delicado-dourado.jpg" alt="Colar Borboleta Delicado Dourado">
+        </div>
+        <div class="product-info">
+          <h3>Colar Borboleta Delicado</h3>
+          <p class="price">R$ 89,90</p>
+          <button class="btn-secondary" data-product="Colar Borboleta Delicado">Tenho Interesse</button>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="imagens/corrente-cartier-prata.jpg" alt="Corrente Cartier Prata">
+        </div>
+        <div class="product-info">
+          <h3>Corrente Cartier Prata</h3>
+          <p class="price">R$ 129,90</p>
+          <button class="btn-secondary" data-product="Corrente Cartier Prata">Tenho Interesse</button>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="imagens/corrente-elos-retangulares-dourada.jpg" alt="Corrente Elo Retangular Dourada">
+        </div>
+        <div class="product-info">
+          <h3>Corrente Elo Retangular</h3>
+          <p class="price">R$ 149,90</p>
+          <button class="btn-secondary" data-product="Corrente Elo Retangular">Tenho Interesse</button>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="imagens/corrente-veneziana-prata.jpg" alt="Corrente Veneziana Prata">
+        </div>
+        <div class="product-info">
+          <h3>Corrente Veneziana Prata</h3>
+          <p class="price">R$ 109,90</p>
+          <button class="btn-secondary" data-product="Corrente Veneziana Prata">Tenho Interesse</button>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="imagens/corrente-cartier-prata.jpg" alt="Brinco Argola com Cravejado">
+        </div>
+        <div class="product-info">
+          <h3>Brinco Argola com Cravejado</h3>
+          <p class="price">R$ 69,90</p>
+          <button class="btn-secondary" data-product="Brinco Argola com Cravejado">Tenho Interesse</button>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="imagens/colar-borboleta-delicado-dourado.jpg" alt="Brinco Gota Cristal Semijoia">
+        </div>
+        <div class="product-info">
+          <h3>Brinco Gota Cristal</h3>
+          <p class="price">R$ 99,90</p>
+          <button class="btn-secondary" data-product="Brinco Gota Cristal">Tenho Interesse</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <script>
+    const whatsappNumber = '5522997633624';
+    document.querySelectorAll('.btn-secondary[data-product]').forEach(button => {
+      button.addEventListener('click', () => {
+        const productName = button.dataset.product;
+        const message = encodeURIComponent(`Olá, tenho interesse no produto: ${productName}`);
+        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+      });
+    });
+  </script>
+</body>
+</html>
