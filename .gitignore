@@ -7,3 +7,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .vercel
+# Temporary debug files created by automated fixes
+temp_page_*.txt
+*.log
+.vscode/
+.env
