@@ -67,3 +67,60 @@ INSERT INTO public.conteudo_site (id, content)
 VALUES
   ('contato', '{"whatsapp": "+5521970853896", "email": "contato@boninidigital.com", "footer": "© 2026 Bonini Digital. Todos os direitos reservados."}'::jsonb)
 ON CONFLICT (id) DO NOTHING;
+
+-- Cria tabela de portfólio com imagens vinculadas ao Supabase Storage
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
+CREATE TABLE IF NOT EXISTS public.portfolio_items (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  titulo TEXT NOT NULL,
+  categoria TEXT NOT NULL,
+  descricao TEXT NOT NULL,
+  imagem_url TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.portfolio_items ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS portfolio_items_public_select ON public.portfolio_items;
+DROP POLICY IF EXISTS portfolio_items_insert_authenticated ON public.portfolio_items;
+DROP POLICY IF EXISTS portfolio_items_update_authenticated ON public.portfolio_items;
+DROP POLICY IF EXISTS portfolio_items_delete_authenticated ON public.portfolio_items;
+
+CREATE POLICY portfolio_items_public_select
+  ON public.portfolio_items
+  FOR SELECT
+  USING (true);
+
+CREATE POLICY portfolio_items_insert_authenticated
+  ON public.portfolio_items
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (auth.role() = 'authenticated');
+
+CREATE POLICY portfolio_items_update_authenticated
+  ON public.portfolio_items
+  FOR UPDATE
+  TO authenticated
+  USING (auth.role() = 'authenticated')
+  WITH CHECK (auth.role() = 'authenticated');
+
+CREATE POLICY portfolio_items_delete_authenticated
+  ON public.portfolio_items
+  FOR DELETE
+  TO authenticated
+  USING (auth.role() = 'authenticated');
+
+-- Exemplo de item de portfólio inicial. Atualize essa URL para sua imagem no bucket.
+INSERT INTO public.portfolio_items (titulo, categoria, descricao, imagem_url, slug)
+VALUES
+  (
+    'Cliente Premium',
+    'Website Institucional',
+    'Design dark mode com foco em conversão e identidade digital sofisticada.',
+    'https://pkidzffffaigbvwzrqvf.supabase.co/storage/v1/object/public/portfolio/cliente-premium.jpg',
+    'cliente-premium'
+  )
+ON CONFLICT (slug) DO NOTHING;

@@ -188,17 +188,19 @@ export default function AdminPainel() {
                 <button type="button" onClick={addImageField} className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-black transition hover:bg-[#e6a712]">Adicionar</button>
               </div>
               <div className="mt-6 space-y-4">
-                {portfolioUrls.map((url, index) => (
-                  <div key={`image-${index}`} className="grid gap-3 sm:grid-cols-[1fr_auto]">
-                    <input
-                      value={url}
-                      onChange={(event) => handleImageChange(index, event.target.value)}
-                      placeholder="URL da imagem do projeto"
-                      className="rounded-2xl border border-white/10 bg-[#161616] px-4 py-3 text-white outline-none focus:border-primary"
-                    />
-                    <button type="button" onClick={() => removeImageField(index)} className="rounded-full border border-white/10 px-4 py-3 text-sm text-slate-200 transition hover:border-rose-400 hover:text-rose-300">Remover</button>
-                  </div>
-                ))}
+                    <div>
+                      {portfolioUrls.map((url, index) => (
+                        <div key={`image-${index}`} className="grid gap-3 sm:grid-cols-[1fr_auto]">
+                          <input
+                            value={url}
+                            onChange={(event) => handleImageChange(index, event.target.value)}
+                            placeholder="URL da imagem do projeto"
+                            className="rounded-2xl border border-white/10 bg-[#161616] px-4 py-3 text-white outline-none focus:border-primary"
+                          />
+                          <button type="button" onClick={() => removeImageField(index)} className="rounded-full border border-white/10 px-4 py-3 text-sm text-slate-200 transition hover:border-rose-400 hover:text-rose-300">Remover</button>
+                        </div>
+                      ))}
+                    </div>
               </div>
             </div>
           )}
